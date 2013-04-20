@@ -16,7 +16,7 @@ $(document).ready(function(e){
 				fileTransfer.download(src,'file:///mnt/sdcard/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
 					navigator.notification.alert("Archivos Descargado", null, "Completado", "OK");
 				},function(error) {
-					navigator.notigication.alert("upload error code" + error.code, null, "Error", "Aceptar");
+					navigator.notification.alert("upload error code" + error.code, null, "Error", "Aceptar");
 				});
 			}
 			if($(this).text()=='Probar'){
