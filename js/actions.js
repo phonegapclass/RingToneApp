@@ -7,6 +7,7 @@ $(document).ready(function(e){
 			$('#descargar').attr('title',$(this).text());
 		});
 		$('#descargar a').tap(function(){
+			alert(src);
 			if($(this).text()=='Descargar'){
 				//Descarga de archivos con transaction
 			}
