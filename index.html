@@ -1,98 +1,101 @@
- <html>
-      <head>
-        <title>Media Example</title>
+﻿<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+<title>jqMobi Starter</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" charset="utf-8">
 
-        // Wait for Cordova to load
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
+<link rel="stylesheet" type="text/css" href="styles/icons.css" /> 
 
-        // Cordova is ready
-        //
-        function onDeviceReady() {
-            playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3");
-        }
+<link rel="stylesheet"  type="text/css" href="themes/jq.ui.css" title="default" />
 
-        // Audio player
-        //
-        var my_media = null;
-        var mediaTimer = null;
 
-        // Play audio
-        //
-        function playAudio(src) {
-            // Create Media object from src
-            my_media = new Media(src, onSuccess, onError);
+<!-- uncomment for AppMobi apps
+<script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/appmobi.js"></script> 
+<script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/xhr.js"></script> 	
+-->
 
-            // Play audio
-            my_media.play();
+<script type="text/javascript" charset="utf-8" src="./js/jq.ui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/actions.js"></script> 
 
-            // Update my_media position every second
-            if (mediaTimer == null) {
-                mediaTimer = setInterval(function() {
-                    // get my_media position
-                    my_media.getCurrentPosition(
-                        // success callback
-                        function(position) {
-                            if (position > -1) {
-                                setAudioPosition((position) + " sec");
-                            }
-                        },
-                        // error callback
-                        function(e) {
-                            console.log("Error getting pos=" + e);
-                            setAudioPosition("Error: " + e);
-                        }
-                    );
-                }, 1000);
-            }
-        }
 
-        // Pause audio
-        // 
-        function pauseAudio() {
-            if (my_media) {
-                my_media.pause();
-            }
-        }
+<!-- include touch.js on desktop browsers only -->
+<script>
 
-        // Stop audio
-        // 
-        function stopAudio() {
-            if (my_media) {
-                my_media.stop();
-            }
-            clearInterval(mediaTimer);
-            mediaTimer = null;
-        }
 
-        // onSuccess Callback
-        //
-        function onSuccess() {
-            console.log("playAudio():Audio Success");
-        }
+if(!((window.DocumentTouch&&document instanceof DocumentTouch)||'ontouchstart' in window)){
+    var script=document.createElement("script");
+    script.src="js/jq.desktopBrowsers.js";
+    var tag=$("head").append(script);
+}
 
-        // onError Callback 
-        //
-        function onError(error) {
-            alert('code: '    + error.code    + '\n' + 
-                  'message: ' + error.message + '\n');
-        }
+$(document).ready(function(){
+	
+});
 
-        // Set audio position
-        // 
-        function setAudioPosition(position) {
-            document.getElementById('audio_position').innerHTML = position;
-        }
+</script>
 
-        </script>
-      </head>
-      <body>
-        <a href="#" class="btn large" onclick="playAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3');">Play Audio</a>
-        <a href="#" class="btn large" onclick="pauseAudio();">Pause Playing Audio</a>
-        <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
-        <p id="audio_position"></p>
-      </body>
-    </html>
+
+
+
+<script type="text/javascript">
+    /* This function runs once the page is loaded, but appMobi is not yet active */
+	var webRoot="./";
+	$.ui.autoLaunch=false;
+    $.ui.resetScrollers=false;
+    var init = function(){
+	   $.ui.backButtonText="Back";  
+	   window.setTimeout(function(){$.ui.launch();},1500);
+       //$.ui.removeFooterMenu(); This would remove the bottom nav menu
+    };
+    document.addEventListener("DOMContentLoaded",init,false);  
+	$.ui.ready(function(){console.log('ready');});
+   
+    
+	
+    /* This code is used to run as soon as appMobi activates */
+    var onDeviceReady=function(){
+		AppMobi.device.setRotateOrientation("portrait");
+        AppMobi.device.setAutoRotate(false);
+		webRoot=AppMobi.webRoot+"/";
+	    //hide splash screen
+	    AppMobi.device.hideSplashScreen();	
+		
+    };
+    document.addEventListener("appMobi.device.ready",onDeviceReady,false);    
+	
+</script>
+
+</head>
+<body>
+    <div id="jQUi">
+        <!-- this is the header div -->
+        <div id="header">
+        </div>
+
+        
+        <div id="content">
+            <!-- here is where you can add your panels -->
+            <div title='Tonos' id="main" class="panel" selected="true" >
+            	<ul>
+                	<li><a href="#descargar" class="icon headset big" data-transition="pop" rel="http://carlos.igitsoft.com/apps/ringtonesPlatform/rings/_galaga 1.mp3">Algo</a>
+                </ul>
+            </div>
+            <div title='Tonos' id="descargar" class="panel" selected="false" >
+            	<center>
+                    <a href="#" class="button">Descargar</a><br />
+                    <a href="#" class="button">Probar</a>
+                </center>
+            </div> 
+
+        </div>
+
+        <!-- bottom navbar.  Add additional tabs here -->
+        <div id="navbar">
+            <a href="#main" id='navbar_home' class='icon home' >home</a>
+        </div>
+    </div>
+</body>
+</html>
