@@ -14,7 +14,9 @@ $(document).ready(function(e){
 			if($(this).text()=='Probar'){
 				//Play de media
 				// Create Media object from src
-				my_media = new Media(src, null, function(){
+				my_media = new Media(src, function(){
+					alert('ok');	
+				}, function(){
 					alert('Error');
 				});
 	
