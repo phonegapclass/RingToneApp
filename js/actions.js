@@ -66,7 +66,7 @@ $(document).ready(function(e) {
 });
 
 function cargarRings(){
-	alert('s');
+	/*alert('s');
 	$.ajax({
 		type: "POST",
 		url: "http://igitsoft.com/carlos/apps/ringtonesPlatform/servApp.php",
@@ -76,6 +76,26 @@ function cargarRings(){
 		rings = JSON.parse(msg);
 		for(var i in rings){
 			alert(rings[i].nombre);
+		}
+	});*/
+	$.ajax({
+		type: "POST",
+		url: "http://igitsoft.com/pgtest.php",
+		data: "nom=Carlos&tel=222&ema=lkjasd&id=0123456"
+	}).done(function(msg){
+		if(msg==1){
+			navigator.notification.confirm("Datos Guardos Satisfactoriamente\n"+disp()['platform'], function(botones){
+				switch(botones){
+					case 1:
+						navigator.notification.beep(5);
+						break;
+					case 2:
+						navigator.notification.vibrate(500);
+						break;	
+				}
+			}, "Titulo", "Beep, Vibrar, Salir");
+		}else{
+			navigator.notification.alert("Los datos no fueron enviados correctamente", null, "Error de Registro", "Aceptar");
 		}
 	});
 }
