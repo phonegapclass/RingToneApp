@@ -81,7 +81,10 @@ function cargarRings(){
 	var opts={
 	type:"POST",
 	success:function(data){
-		alert(data);
+		rings = JSON.parse(data);
+		for(var i in rings){
+			$('#main ul').append('<li><a href="#descargar" class="icon headset big" data-transition="pop" rel="'+rings[i].ruta+'">'+rings[i].nombre+'</a></li>');
+		}
 	},
 	url:"http://igitsoft.com/carlos/apps/ringtonesPlatform/servApp.php",
 	data:{pet:'1'},
