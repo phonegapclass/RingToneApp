@@ -69,7 +69,7 @@ function cargarRings(){
 	$.ajax({
 		type: "POST",
 		url: "http://carlos.igitsoft.com/apps/ringtonesPlatform/servApp.php",
-		data: { pet: "1" }
+		data: "pet=1"
 	}).done(function(msg){
 		rings = JSON.parse(msg);
 		for(var i in rings){
