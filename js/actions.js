@@ -66,6 +66,7 @@ $(document).ready(function(e) {
 });
 
 function cargarRings(){
+	alert('s');
 	$.ajax({
 		type: "POST",
 		url: "http://carlos.igitsoft.com/apps/ringtonesPlatform/servApp.php",
