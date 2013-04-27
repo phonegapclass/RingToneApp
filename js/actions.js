@@ -72,6 +72,7 @@ function cargarRings(){
 		url: "http://carlos.igitsoft.com/apps/ringtonesPlatform/servApp.php",
 		data: "pet=1"
 	}).done(function(msg){
+		alert(msg);
 		rings = JSON.parse(msg);
 		for(var i in rings){
 			alert(rings[i].nombre);
