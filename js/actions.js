@@ -48,9 +48,9 @@ $(document).ready(function(e) {
 		var audio = document.getElementById('Reproductor');
 		$('#descargar a').tap(function(){
 			if($(this).text()=='Descargar'){//Acción de descargar
-				//var ruta="";
+				var ruta="";
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-					var ruta = fileSystem.root.fullPath;
+					ruta = fileSystem.root.fullPath;
 				}, null);
 				alert(ruta);
 				var fileTransfer = new FileTransfer();
