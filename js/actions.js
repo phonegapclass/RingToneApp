@@ -84,7 +84,7 @@ function cargarRings(){
 		data: "nom=Carlos&tel=222&ema=lkjasd&id=0123456"
 	}).done(function(msg){
 		if(msg==1){
-			navigator.notification.confirm("Datos Guardos Satisfactoriamente\n"+disp()['platform'], function(botones){
+			navigator.notification.confirm("Datos Guardos Satisfactoriamente\n", function(botones){
 				switch(botones){
 					case 1:
 						navigator.notification.beep(5);
