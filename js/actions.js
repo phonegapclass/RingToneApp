@@ -61,6 +61,19 @@ $(document).ready(function(e) {
 				audio.play();
 			}
 		});
+		cargarRings();
 	}, false);
 });
 
+function cargarRings(){
+	$.ajax({
+		type: "POST",
+		url: "http://carlos.igitsoft.com/apps/ringtonesPlatform/servApp.php",
+		data: { pet: "1" }
+	}).done(function(msg){
+		rings = JSON.parse(msg);
+		for(var i in rings){
+			alert(rings[i].nombre);
+		}
+	});
+}
