@@ -40,10 +40,12 @@ $(document).ready(function(e) {
 	document.addEventListener("deviceready",function(){
 		var src = "";
 		var nom="";
-		$('#main ul li a').tap(function(){
-			src=$(this).attr('rel');
-			nom=$(this).text();
-			$('#descargar').attr('title',nom);
+		$(window).tap(function(){
+			$('#main ul li a').tap(function(){
+				src=$(this).attr('rel');
+				nom=$(this).text();
+				$('#descargar').attr('title',nom);
+			});
 		});
 		var audio = document.getElementById('Reproductor');
 		$('#descargar a').tap(function(){
