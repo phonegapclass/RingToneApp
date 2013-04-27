@@ -51,14 +51,14 @@ $(document).ready(function(e) {
 				var ruta="";
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 					ruta = fileSystem.root.fullPath;
+					alert(ruta);
+					var fileTransfer = new FileTransfer();
+					fileTransfer.download(src,ruta+'/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
+						navigator.notification.alert("Archivo Descargado", null, "Completado", "OK");
+					},function(error) {
+						navigator.notification.alert("Código de error " + error.code, null, "Error", "Aceptar");
+					});
 				}, null);
-				alert(ruta);
-				var fileTransfer = new FileTransfer();
-				fileTransfer.download(src,ruta+'/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
-					navigator.notification.alert("Archivo Descargado", null, "Completado", "OK");
-				},function(error) {
-					navigator.notification.alert("Código de error " + error.code, null, "Error", "Aceptar");
-				});
 			}else{//Reproducir Audio
 				audio.src = src;
 				audio.play();
