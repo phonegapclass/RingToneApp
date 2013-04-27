@@ -49,7 +49,7 @@ $(document).ready(function(e) {
 		$('#descargar a').tap(function(){
 			if($(this).text()=='Descargar'){//Acción de descargar
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-					alert(fileSystem.name+' '+fileSystem.root.name);
+					alert(fileSystem.name+' '+fileSystem.root.fullPath);
 				}, null);
 				var fileTransfer = new FileTransfer();
 				fileTransfer.download(src,'file:///mnt/sdcard/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
