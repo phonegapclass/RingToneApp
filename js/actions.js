@@ -48,12 +48,9 @@ $(document).ready(function(e) {
 		var audio = document.getElementById('Reproductor');
 		$('#descargar a').tap(function(){
 			if($(this).text()=='Descargar'){//Acción de descargar
-				var ruta="";
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-					ruta = fileSystem.root.fullPath;
-					alert(ruta);
 					var fileTransfer = new FileTransfer();
-					fileTransfer.download(src,ruta+'/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
+					fileTransfer.download(src,fileSystem.root.fullPath+'/ringtoneApp/'+nom+'.mp3',function(entry){//Verificar que no exista el nombre de la carpeta
 						navigator.notification.alert("Archivo Descargado", null, "Completado", "OK");
 					},function(error) {
 						navigator.notification.alert("Código de error " + error.code, null, "Error", "Aceptar");
